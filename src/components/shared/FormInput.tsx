@@ -12,22 +12,24 @@ export default function FormInput({
   placeholder: string;
 }) {
   return (
-    <div className="rounded-xl border-2 border-ring gap-3 px-5 py-2 relative z-0 flex w-full  ">
+    <div className="rounded-xl border-2 border-ring  px-5 py-2 relative z-0 flex w-full  ">
       <div className="absolute z-1 -top-3.5 bg-gray-100">
         <label className="text-sm"> {title}</label>
       </div>
-      <Icon
-        size={24}
-        className="color-ring"
-        strokeWidth={2}
-        absoluteStrokeWidth
-      />
+      <div className="flex items-center gap-3">
+        <Icon
+          size={20}
+          className="color-ring"
+          strokeWidth={2}
+          absoluteStrokeWidth
+        />
 
-      <input
-        className="w-full outline-none"
-        placeholder={placeholder}
-        type={type}
-      />
+        <input
+          className="w-full outline-none"
+          placeholder={placeholder}
+          type={type}
+        />
+      </div>
     </div>
   );
 }

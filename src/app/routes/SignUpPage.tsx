@@ -1,7 +1,7 @@
 import FormInput from "@/components/shared/FormInput";
 import { Button } from "@/components/ui/button";
 
-import { UserRound } from "lucide-react";
+import { LockKeyhole, Mail, UserRound } from "lucide-react";
 
 export default function SignUpPage() {
   return (
@@ -38,13 +38,13 @@ export default function SignUpPage() {
               placeholder="Your Email"
               type="email"
               title="Email"
-              Icon={UserRound}
+              Icon={Mail}
             />
             <FormInput
               placeholder="Password"
               type="password"
               title="Password"
-              Icon={UserRound}
+              Icon={LockKeyhole}
             />
             {/* Remember me */}
             <div className="flex items-center mt-3">
