@@ -16,7 +16,7 @@ export default function FormInput({
       <div className="absolute z-1 -top-3.5 bg-gray-100">
         <label className="text-xs"> {title}</label>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3  w-full">
         <Icon
           size={20}
           className="color-ring"
