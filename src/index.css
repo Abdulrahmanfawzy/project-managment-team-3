@@ -108,6 +108,7 @@
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-social-bg: var(--social-bg);
   --color-sidebar: var(--sidebar);
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
@@ -119,6 +120,8 @@
   --color-border: var(--border);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-border: var(--accent-border);
+  --color-accent-bg: var(--accent-bg);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
