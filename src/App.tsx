@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import LangSwitcher from "./components/shared/lang-switcher";
+import Taskstab from "./Features/Projects/Taskstab";
 
 export default function App() {
   const { t } = useTranslation();
@@ -9,6 +10,7 @@ export default function App() {
       <h1>{t("dashboard.title")}</h1>
       <p>{t("common.welcome")}</p>
       <LangSwitcher />
+      <Taskstab />
     </div>
   );
 }
