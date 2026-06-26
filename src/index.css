@@ -14,6 +14,14 @@
   --icon-workedHours: #a43782;
   --border: oklch(0.922 0 0);
   --code-bg: #f4f3ec;
+  --header-text1 : #A43782 ;
+  --header-text2 : #7D2D7E ;
+  --header-text3 : #04B5AE ;
+  --header-text4 : #27272B ;
+  --column-header1 : #FAECF6 ;
+  --column-header2 : #F2EAF2 ;
+  --column-header3 : #E6F8F7 ;
+  --column-header4 : #E9E9EA ;
   --accent: oklch(0.97 0 0);
   --accent-bg: rgba(170, 59, 255, 0.1);
   --accent-border: rgba(170, 59, 255, 0.5);
@@ -110,6 +118,14 @@
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
+  --color-header-text1: var(--header-text1);
+  --color-header-text2: var(--header-text2);
+  --color-header-text3: var(--header-text3);
+  --color-header-text4: var(--header-text4);
+  --color-column-header1: var(--column-header1);
+  --color-column-header2: var(--column-header2);
+  --color-column-header3: var(--column-header3);
+  --color-column-header4: var(--column-header4);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-bg-gray: var(--bg-gray);
   --color-icon-lightBlue: var(--icons-lightBlue);
@@ -149,4 +165,5 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-border: var(--border);
 }
