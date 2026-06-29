@@ -1,5 +1,5 @@
 import { Briefcase, CalendarDays, Clock4, Settings } from "lucide-react";
-import Navbar from "../components/NavBarTemp";
+import Navbar from "../../../components/shared/NavBarTemp";
 import StatCard from "../components/StatCard";
 import { useState } from "react";
 import TabNavigation from "../components/ProfileNavbar";
