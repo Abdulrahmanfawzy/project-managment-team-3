@@ -3,6 +3,7 @@ import LangSwitcher from "./components/shared/lang-switcher";
 
 import Teamstab from "./Features/Projects/Teamstab";
 import Taskstab from "./Features/Projects/Taskstab";
+import Filestab from "./Features/Projects/Filestab";
 
 
 export default function App() {
