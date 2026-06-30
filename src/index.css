@@ -7,12 +7,15 @@
   --brand: #005afb;
   --text: #6b6375;
   --text-h: #08060d;
+  --text-black : #000000 ;
   --bg: #fff;
   --bg-gray: #f6f8fa;
   --icons-lightBlue: #e6efff;
   --icons-lightRed: #faecf6;
   --icon-workedHours: #a43782;
   --border: oklch(0.922 0 0);
+  --border-files:#AEAEB2;
+  --buttom-files : #005AFB ;
   --code-bg: #f4f3ec;
   --header-text1 : #A43782 ;
   --header-text2 : #7D2D7E ;
@@ -126,6 +129,8 @@
   --color-column-header2: var(--column-header2);
   --color-column-header3: var(--column-header3);
   --color-column-header4: var(--column-header4);
+  --color-text: var(--text-h);
+  --color-black : var(--text-black);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-bg-gray: var(--bg-gray);
   --color-icon-lightBlue: var(--icons-lightBlue);
@@ -158,6 +163,8 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
+  --color-border-files: var(--border-files);
+  --color-buttom-files: var(--buttom-files);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
