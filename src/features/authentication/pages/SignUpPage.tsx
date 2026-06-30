@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LockKeyhole, Mail, UserRound } from "lucide-react";
 import Header from "../components/Header";
 import FormInput from "../components/FormInput";
-import { signUpSchema, type SignUpFormData } from "../schemas";
+import { signUpSchema, type SignUpFormData } from "../schemas/signUpSchema";
 import { useSignUp } from "../hooks/useSignUp";
 
 export default function SignUpPage() {
