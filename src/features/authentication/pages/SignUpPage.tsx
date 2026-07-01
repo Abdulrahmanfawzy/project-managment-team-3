@@ -27,6 +27,7 @@ export default function SignUpPage() {
     });
   }
   //TODO: redirect to verify email after successful registration
+  //TODO redirect to login page after successfully creating account
 
   return (
     <div className="bg-gray-100 w-full min-h-screen ">

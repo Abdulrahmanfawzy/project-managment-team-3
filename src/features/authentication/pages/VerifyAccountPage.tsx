@@ -1,30 +1,31 @@
-import { Mail } from "lucide-react";
-import FormInput from "../components/FormInput";
+import React from "react";
 import Header from "../components/Header";
-import { Button } from "@/components/ui/button";
-import { useForgetPassword } from "../hooks/useForgetPassword";
+import FormInput from "../components/FormInput";
+import { useVerifyAccount } from "../hooks/useVerifyAccount";
 import { useForm } from "react-hook-form";
 import {
-  forgetPasswordSchema,
-  type ForgetPasswordFormData,
-} from "../schemas/forgetPasswordSchema";
+  verifyAccountSchema,
+  type VerifyAccountFormData,
+} from "../schemas/verifyAccount";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
+import { KeyRound } from "lucide-react";
 
-export default function ForgetPasswordPage() {
-  const { mutate, isSuccess, error: APIerror, isPending } = useForgetPassword();
+export default function VerifyAccountPage() {
+  const { mutate, isSuccess, error: APIerror, isPending } = useVerifyAccount();
   //TODO redirect to reset password page if isSuccess is true
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ForgetPasswordFormData>({
-    resolver: zodResolver(forgetPasswordSchema),
+  } = useForm<VerifyAccountFormData>({
+    resolver: zodResolver(verifyAccountSchema),
   });
 
-  function onSubmit(data: ForgetPasswordFormData) {
+  function onSubmit(data: VerifyAccountFormData) {
     console.log(data);
-    mutate({ email: data.email });
+    // mutate({ email: data.email });
   }
 
   return (
@@ -35,8 +36,11 @@ export default function ForgetPasswordPage() {
         {/* form container */}
         <div className="bg-gray-100 rounded-2xl py-10 gap-3 flex-col flex px-10  items-center justify-center w-[40%] shadow-xl">
           {/* TITLE */}
-          <h1 className="font-bold text-black text-3xl">Forgot password ?</h1>
-          <h2 className="text-lg">Enter your Email address.</h2>
+          <h1 className="font-bold text-black text-3xl">Verify Account</h1>
+          <h2 className="text-lg">
+            Enter the OTP that was sent to you to verify your email{" "}
+            {"TODO email here"}.
+          </h2>
           {/*API ERROR */}
           {APIerror && (
             <div className="text-red-500 text-sm font-semibold">
@@ -49,12 +53,12 @@ export default function ForgetPasswordPage() {
             className="w-full flex flex-col gap-5"
           >
             <FormInput
-              placeholder="Your Email"
-              type="email"
-              title="Email"
-              Icon={Mail}
-              {...register("email")}
-              errorMSG={errors.email?.message}
+              placeholder="OTP"
+              type="text"
+              title="OTP"
+              Icon={KeyRound}
+              {...register("OTP")}
+              errorMSG={errors.OTP?.message}
             />
             <Button
               className={`cursor-pointer bg-brand py-1  ${
@@ -62,7 +66,7 @@ export default function ForgetPasswordPage() {
               }`}
               disabled={isPending}
             >
-              {isPending ? "Sending..." : "Send reset Email"}
+              {isPending ? "Verifying..." : "Verify"}
             </Button>
           </form>
         </div>
