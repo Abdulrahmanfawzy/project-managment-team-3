@@ -21,8 +21,8 @@ export default function RecentActivities() {
   ];
   return (
     <div className="flex flex-col gap-4 w-full">
-      {activities.map((act) => (
-        <ActivityCard title={act.title} time={act.time} />
+      {activities.map((act, index) => (
+        <ActivityCard key={index} title={act.title} time={act.time} />
       ))}
     </div>
   );

@@ -1,12 +1,12 @@
 import axios from "axios";
 
 import type { ResetPasswordFormData } from "../schemas/resetPasswordSchema";
-
-const base_url = import.meta.env.VITE_API_URL;
+import { publicApi } from "@/services/publicAPI";
 
 export async function resetPassword(data: ResetPasswordFormData) {
   try {
-    const res = await axios.post(`${base_url}/reset-password`, data);
+    const res = await publicApi.post(`/reset-password`, data);
+
     console.log(res);
     return res.data;
   } catch (error) {

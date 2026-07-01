@@ -13,7 +13,7 @@ import { KeyRound } from "lucide-react";
 
 export default function VerifyAccountPage() {
   const { mutate, isSuccess, error: APIerror, isPending } = useVerifyAccount();
-  //TODO redirect to reset password page if isSuccess is true
+  //TODO redirect to login page after verifying
 
   const {
     register,
@@ -29,48 +29,41 @@ export default function VerifyAccountPage() {
   }
 
   return (
-    <div className="bg-gray-100 w-full min-h-screen ">
-      {/* HEADER */}
-      <Header />
-      <div className=" w-full min-h-full flex justify-center items-center py-3">
-        {/* form container */}
-        <div className="bg-gray-100 rounded-2xl py-10 gap-3 flex-col flex px-10  items-center justify-center w-[40%] shadow-xl">
-          {/* TITLE */}
-          <h1 className="font-bold text-black text-3xl">Verify Account</h1>
-          <h2 className="text-lg">
-            Enter the OTP that was sent to you to verify your email{" "}
-            {"TODO email here"}.
-          </h2>
-          {/*API ERROR */}
-          {APIerror && (
-            <div className="text-red-500 text-sm font-semibold">
-              {APIerror.message || "An error occurred"}
-            </div>
-          )}
-          {/*  FORGOT PASSWORD FORM */}
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="w-full flex flex-col gap-5"
-          >
-            <FormInput
-              placeholder="OTP"
-              type="text"
-              title="OTP"
-              Icon={KeyRound}
-              {...register("OTP")}
-              errorMSG={errors.OTP?.message}
-            />
-            <Button
-              className={`cursor-pointer bg-brand py-1  ${
-                isPending ? "cursor-not-allowed" : ""
-              }`}
-              disabled={isPending}
-            >
-              {isPending ? "Verifying..." : "Verify"}
-            </Button>
-          </form>
+    <>
+      {/* TITLE */}
+      <h1 className="font-bold text-black text-3xl">Verify Account</h1>
+      <h2 className="text-lg">
+        Enter the OTP that was sent to you to verify your email{" "}
+        {"TODO email here"}.
+      </h2>
+      {/*API ERROR */}
+      {APIerror && (
+        <div className="text-red-500 text-sm font-semibold">
+          {APIerror.message || "An error occurred"}
         </div>
-      </div>
-    </div>
+      )}
+      {/*  FORGOT PASSWORD FORM */}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full flex flex-col gap-5"
+      >
+        <FormInput
+          placeholder="OTP"
+          type="text"
+          title="OTP"
+          Icon={KeyRound}
+          {...register("OTP")}
+          errorMSG={errors.OTP?.message}
+        />
+        <Button
+          className={`cursor-pointer bg-brand py-1  ${
+            isPending ? "cursor-not-allowed" : ""
+          }`}
+          disabled={isPending}
+        >
+          {isPending ? "Verifying..." : "Verify"}
+        </Button>
+      </form>
+    </>
   );
 }

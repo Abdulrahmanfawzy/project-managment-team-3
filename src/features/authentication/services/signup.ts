@@ -1,11 +1,10 @@
+import { publicApi } from "@/services/publicAPI";
 import type { SignUpFormData } from "../schemas/signUpSchema";
 import axios from "axios";
 
-const base_url = import.meta.env.VITE_API_URL;
-
 export async function signup(data: SignUpFormData) {
   try {
-    const res = await axios.post(`${base_url}/register`, data);
+    const res = await publicApi.post(`/register`, data);
 
     return res.data;
   } catch (error) {
