@@ -1,11 +1,11 @@
 import axios from "axios";
 import type { VerifyAccountFormData } from "../schemas/verifyAccount";
-
-const base_url = import.meta.env.VITE_API_URL;
+import { publicApi } from "@/services/publicAPI";
 
 export async function verifyAccount(data: VerifyAccountFormData) {
   try {
-    const res = await axios.post(`${base_url}/reset-password`, data);
+    const res = await publicApi.post(`/verify-account`, data);
+
     console.log(res);
     return res.data;
   } catch (error) {

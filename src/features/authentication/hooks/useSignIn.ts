@@ -1,12 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "../services/signin";
-import { setToken } from "../services/token";
+import TokenService from "@/services/tokenServices";
+import { useNavigate } from "react-router-dom";
 
-export const useSignIn = () =>
-  useMutation({
+export const useSignIn = () => {
+  const navigate = useNavigate();
+  return useMutation({
     mutationFn: signIn,
     onSuccess: (data) => {
-      setToken(data.token);
+      TokenService.setToken(data.token);
+      navigate("/dashboard/profile/overview");
       //TODO redirect after login
     },
   });
+};

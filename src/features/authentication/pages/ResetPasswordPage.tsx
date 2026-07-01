@@ -34,61 +34,54 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="bg-gray-100 w-full min-h-screen ">
-      {/* HEADER */}
-      <Header />
-      <div className=" w-full min-h-full flex justify-center items-center py-3">
-        {/* form container */}
-        <div className="bg-gray-100 rounded-2xl py-10 gap-3 flex-col flex px-10  items-center justify-center w-[40%] shadow-xl">
-          {/* TITLE */}
-          <h1 className="font-bold text-black text-3xl">Reset Password</h1>
+    <>
+      {/* TITLE */}
+      <h1 className="font-bold text-black text-3xl">Reset Password</h1>
 
-          {/*API ERROR */}
-          {APIerror && (
-            <div className="text-red-500 text-sm font-semibold">
-              {APIerror.message || "An error occurred"}
-            </div>
-          )}
-          {/*  FORGOT PASSWORD FORM */}
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="w-full flex flex-col gap-5"
-          >
-            <FormInput
-              placeholder="Your Email"
-              type="email"
-              title="Email"
-              Icon={Mail}
-              {...register("email")}
-              errorMSG={errors.email?.message}
-            />
-            <FormInput
-              placeholder="Password"
-              type="password"
-              title="Password"
-              Icon={LockKeyhole}
-              {...register("password")}
-              errorMSG={errors.password?.message}
-            />
-            <FormInput
-              placeholder="Confirm Password"
-              type="password"
-              title="Confirm Password"
-              Icon={LockKeyhole}
-              {...register("password_confirmation")}
-              errorMSG={errors.password_confirmation?.message}
-            />
-            <Button
-              type="submit"
-              className={`cursor-pointer bg-brand py-1  ${
-                isPending ? "cursor-not-allowed" : ""
-              }`}
-            >
-              {isPending ? "Submitting..." : "Reset Password"}
-            </Button>
-          </form>
+      {/*API ERROR */}
+      {APIerror && (
+        <div className="text-red-500 text-sm font-semibold">
+          {APIerror.message || "An error occurred"}
         </div>
-      </div>
-    </div>
+      )}
+      {/*  FORGOT PASSWORD FORM */}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full flex flex-col gap-5"
+      >
+        <FormInput
+          placeholder="Your Email"
+          type="email"
+          title="Email"
+          Icon={Mail}
+          {...register("email")}
+          errorMSG={errors.email?.message}
+        />
+        <FormInput
+          placeholder="Password"
+          type="password"
+          title="Password"
+          Icon={LockKeyhole}
+          {...register("password")}
+          errorMSG={errors.password?.message}
+        />
+        <FormInput
+          placeholder="Confirm Password"
+          type="password"
+          title="Confirm Password"
+          Icon={LockKeyhole}
+          {...register("password_confirmation")}
+          errorMSG={errors.password_confirmation?.message}
+        />
+        <Button
+          type="submit"
+          className={`cursor-pointer bg-brand py-1  ${
+            isPending ? "cursor-not-allowed" : ""
+          }`}
+        >
+          {isPending ? "Submitting..." : "Reset Password"}
+        </Button>
+      </form>
+    </>
   );
 }

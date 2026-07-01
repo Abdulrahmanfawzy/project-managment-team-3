@@ -15,7 +15,7 @@ const doneTasks = [
   { name: "Create Wireframes", progress: 100 },
 ];
 
-export default function Dashboard() {
+export default function Tasks() {
   return (
     <div className="grid grid-cols-2 gap-8">
       <TaskCard title="To do" tasks={todoTasks} variant="todo" />
