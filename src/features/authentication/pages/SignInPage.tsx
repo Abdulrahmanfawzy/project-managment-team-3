@@ -2,8 +2,26 @@ import FormInput from "@/features/authentication/components/FormInput";
 import Header from "@/features/authentication/components/Header";
 import { Button } from "@/components/ui/button";
 import { LockKeyhole, Mail } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { signInSchema, type SignInFormData } from "../schemas/signInSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useSignIn } from "../hooks/useSignIn";
 
 export default function SignInPage() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInFormData>({
+    resolver: zodResolver(signInSchema),
+  });
+  const { mutate, isPending, isSuccess, error: APIerror } = useSignIn();
+
+  function onSubmit(data: SignInFormData) {
+    console.log(data);
+    mutate({ email: data.email, password: data.password });
+  }
+
   return (
     <div className="bg-gray-100 w-full min-h-screen ">
       {/* HEADER */}
@@ -21,19 +39,31 @@ export default function SignInPage() {
           <div className="text-sm before:mr-3 after:ml-3 w-full flex before:flex-1 after:flex-1 justify-center items-center before:border-t  after:border-t after:border before:border">
             OR
           </div>
+          {APIerror && (
+            <div className="text-red-500 text-sm font-semibold">
+              {APIerror.message || "An error occurred"}
+            </div>
+          )}
           {/*  SIGN IN FORM */}
-          <div className="w-full flex flex-col gap-5">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-full flex flex-col gap-5"
+          >
             <FormInput
               placeholder="Your Email"
               type="email"
               title="Email"
               Icon={Mail}
+              {...register("email")}
+              errorMSG={errors.email?.message}
             />
             <FormInput
               placeholder="Password"
               type="password"
               title="Password"
               Icon={LockKeyhole}
+              {...register("password")}
+              errorMSG={errors.password?.message}
             />
             {/* Remember me */}
             <div className="flex items-center justify-between mt-3">
@@ -52,7 +82,15 @@ export default function SignInPage() {
                 Forget Password?
               </a>
             </div>
-            <Button className="cursor-pointer bg-brand py-1">Log in</Button>
+            <Button
+              type="submit"
+              className={`cursor-pointer bg-brand py-1  ${
+                isPending ? "cursor-not-allowed" : ""
+              }`}
+              disabled={isPending}
+            >
+              {isPending ? "Logging in......" : "Login"}
+            </Button>
             <div className="w-full flex gap-1 justify-center">
               <h4 className="text-sm">Don't have an account yet?</h4>
               <a
@@ -62,7 +100,7 @@ export default function SignInPage() {
                 Sign Up
               </a>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
