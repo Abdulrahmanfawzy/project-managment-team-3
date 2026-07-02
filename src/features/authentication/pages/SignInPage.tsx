@@ -89,7 +89,7 @@ export default function SignInPage() {
         <Button
           type="submit"
           className={`cursor-pointer bg-brand py-1  ${
-            isPending ? "cursor-not-allowed" : ""
+            isPending ? "cursor-not-allowed opacity-50" : ""
           }`}
           disabled={isPending}
         >
