@@ -2,15 +2,20 @@ import { Briefcase, CalendarDays, Clock4, Settings } from "lucide-react";
 import Navbar from "../../../components/shared/NavBarTemp";
 import StatCard from "../components/StatCard";
 import TabNavigation from "../components/TabNavigation";
-import ProfileImage from "../components/ProfileImage";
+
 import { Link, Outlet } from "react-router-dom";
 import { useGetProfile } from "../hooks/useGetProfile";
+import { useDoneTasks } from "../hooks/useDoneTasks";
 
 export default function ProfilePage() {
   //TODO navigate to edit profile settings when clicking in the image profile settings button
 
-  const { data, isPending, error: APIerror } = useGetProfile();
-
+  const { data: userProfile, isPending, error: APIerror } = useGetProfile();
+  const { data: doneTasks } = useDoneTasks();
+  const joinedData = new Date(userProfile.created_at).toLocaleDateString(
+    "en-US",
+    { month: "short", year: "numeric" }
+  );
   return (
     <div className="w-full min-h-screen mb-20">
       {/* Temporary navbar will be replaced later */}
@@ -36,25 +41,27 @@ export default function ProfilePage() {
           </div>
           {/* Name expertise and joined date */}
           <div className="my-4 flex flex-col gap-4 ">
-            <h2 className="text-2xl text-black font-bold">Mohamed Salah</h2>
+            <h2 className="text-2xl text-black font-bold">
+              {userProfile?.name}
+            </h2>
             <div className="flex gap-2 items-center  ">
-              <h2 className="text-xl">UI/UX Designer</h2>
+              <h2 className="text-xl">{userProfile?.job_title}</h2>
               <div className="flex gap-2 items-center">
                 <CalendarDays />
-                <h2 className="text-xl text-stone-700">Joined Apr 2022</h2>
+                <h2 className="text-xl text-stone-700">Joined {joinedData}</h2>
               </div>
             </div>
           </div>
           {/* Completed task card */}
           <StatCard
             title="Completed Tasks"
-            value="140"
+            value={doneTasks?.length.toString() || "0"}
             color="lightBlue"
             Icon={Briefcase}
           />
           <StatCard
             title="Hours Worked"
-            value="345"
+            value={"0"}
             color="lightRed"
             Icon={Clock4}
           />

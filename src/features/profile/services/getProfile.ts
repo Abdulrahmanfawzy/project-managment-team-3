@@ -1,15 +1,15 @@
 import { api } from "@/services/api";
 
 import axios from "axios";
+import type { UserProfile } from "../types";
 
-export async function getProfile() {
+export async function getProfile(): Promise<UserProfile> {
   try {
     const res = await api.get(`/profile`);
-    console.log(res);
-    return res.data;
+
+    return res.data.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.log(error.response);
       throw error.response?.data || "An error occurred";
     }
   }
