@@ -6,4 +6,5 @@ export const useGetProfile = () =>
     queryKey: ["profile"],
     queryFn: getProfile,
     refetchOnWindowFocus: true,
+    retry: false,
   });
