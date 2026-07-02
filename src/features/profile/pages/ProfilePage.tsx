@@ -10,7 +10,6 @@ export default function ProfilePage() {
   //TODO navigate to edit profile settings when clicking in the image profile settings button
 
   const { data, isPending, error: APIerror } = useGetProfile();
-  console.log(data);
 
   return (
     <div className="w-full min-h-screen mb-20">

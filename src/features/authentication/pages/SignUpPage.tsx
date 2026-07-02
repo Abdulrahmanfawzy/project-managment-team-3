@@ -3,13 +3,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { LockKeyhole, Mail, UserRound } from "lucide-react";
-import Header from "../components/Header";
 import FormInput from "../components/FormInput";
 import { signUpSchema, type SignUpFormData } from "../schemas/signUpSchema";
 import { useSignUp } from "../hooks/useSignUp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -17,7 +17,7 @@ export default function SignUpPage() {
   } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
   });
-  const { mutate, isPending, error: APIerror, isSuccess } = useSignUp();
+  const { mutate, isPending, error: APIerror, isSuccess, data } = useSignUp();
 
   function onSubmit(data: SignUpFormData) {
     mutate({
@@ -26,9 +26,12 @@ export default function SignUpPage() {
       password: data.password,
       password_confirmation: data.password_confirmation,
     });
+    navigate("/signin", {
+      replace: true,
+      state: { message: "Account created successfully. please sign in" },
+    });
   }
   //TODO: redirect to verify email after successful registration
-  //TODO redirect to login page after successfully creating account
 
   return (
     <>

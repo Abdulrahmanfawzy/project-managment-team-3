@@ -6,10 +6,10 @@ import { useForm } from "react-hook-form";
 import { signInSchema, type SignInFormData } from "../schemas/signInSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSignIn } from "../hooks/useSignIn";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export default function SignInPage() {
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -35,11 +35,19 @@ export default function SignInPage() {
       <div className="text-sm before:mr-3 after:ml-3 w-full flex before:flex-1 after:flex-1 justify-center items-center before:border-t  after:border-t after:border before:border">
         OR
       </div>
+      {/* API error */}
       {APIerror && (
-        <div className="text-red-500 text-sm font-semibold">
+        <p className="text-red-500 text-sm font-semibold">
           {APIerror.message || "An error occurred"}
-        </div>
+        </p>
       )}
+      {/* show account created successfully*/}
+      {location.state?.message && (
+        <p className="text-green-500 text-sm font-semibold">
+          {location.state.message}
+        </p>
+      )}
+
       {/*  SIGN IN FORM */}
       <form
         onSubmit={handleSubmit(onSubmit)}
