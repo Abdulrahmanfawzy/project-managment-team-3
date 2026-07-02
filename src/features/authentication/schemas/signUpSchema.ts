@@ -7,6 +7,9 @@ export const signUpSchema = z
       .min(1, "Full name is required")
       .min(10, "Password must be at least 10 characters")
       .max(50, "Full name must be less than 50 characters")
+      .regex(/^[A-Za-z\s]+$/, {
+        message: "Full name can only contain letters and spaces.",
+      })
       .trim(),
 
     email: z.email("Invalid email address").trim().lowercase(),
@@ -20,7 +23,7 @@ export const signUpSchema = z
   })
   .refine((data) => data.password === data.password_confirmation, {
     message: "Passwords do not match",
-    path: ["confirmPassword"],
+    path: ["password_confirmation"],
   });
 
 export type SignUpFormData = z.infer<typeof signUpSchema>;

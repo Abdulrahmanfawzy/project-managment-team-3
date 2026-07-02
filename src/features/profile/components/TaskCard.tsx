@@ -15,7 +15,6 @@ const headerVariants = cva("flex items-center justify-between p-4", {
   },
 });
 
-//Shadcn progress bar doesn't change its bar color based on the variant
 const progressVariants = cva("h-1 rounded-full", {
   variants: {
     variant: {
@@ -47,25 +46,28 @@ export default function TaskCard({
       </div>
       {/* content */}
       <div className="px-4 mb-4 space-y-4 ">
-        {tasks.map((task, index) => (
-          <div key={index} className="flex flex-col gap-4 ">
-            <div className="flex justify-between items-center gap-2 ">
-              <div className="flex flex-col gap-3 w-full">
-                <span className="text-black text-lg">{task.name}</span>
-                <Progress
-                  value={task.progress}
-                  id={task.name}
-                  color={progressVariants({ variant })}
-                  className="bg-blue-100"
-                />
+        {tasks && tasks.length === 0 && <p className="text-black">No task</p>}
+        {tasks &&
+          tasks.length > 0 &&
+          tasks.map((task, index) => (
+            <div key={index} className="flex flex-col gap-4 ">
+              <div className="flex justify-between items-center gap-2 ">
+                <div className="flex flex-col gap-3 w-full">
+                  <span className="text-black text-lg">{task.name}</span>
+                  <Progress
+                    value={task.progress}
+                    id={task.name}
+                    color={progressVariants({ variant })}
+                    className="bg-blue-100"
+                  />
+                </div>
+                {variant == "done" && (
+                  <CheckCircle2 className="h-6 w-6 text-green-600" />
+                )}
               </div>
-              {variant == "done" && (
-                <CheckCircle2 className="h-6 w-6 text-green-600" />
-              )}
+              <div className="h-0.5 w-full bg-bg-gray rounded-full" />
             </div>
-            <div className="h-0.5 w-full bg-bg-gray rounded-full" />
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

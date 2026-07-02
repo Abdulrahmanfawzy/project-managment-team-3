@@ -1,14 +1,6 @@
-import {
-  Check,
-  GlobeCheck,
-  Mail,
-  Phone,
-  SquarePen,
-  UserRound,
-} from "lucide-react";
+import { Check, Mail, Phone, SquarePen, UserRound } from "lucide-react";
 import EditProfileInput from "../components/EditProfileInput";
 import FormTitle from "../components/FormTitle";
-
 import Navbar from "@/components/shared/NavBarTemp";
 import SectionsWrapper from "../components/SectionsWrapper";
 import InputsWrapper from "../components/InputsWrapper";
@@ -21,38 +13,47 @@ import {
 } from "../schemas/editProfile";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEditProfile } from "../hooks/useEditProfile";
+import { useGetProfile } from "../hooks/useGetProfile";
+import Notify from "../components/Notify";
 
 export default function EditProfilePage() {
   //TODO change profile photo after clicking the profile photo settings button
-  //TODO change the availavility status element
-
+  const { data: userProfile } = useGetProfile();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<EditProfileFormData>({
     resolver: zodResolver(editProfileSchema),
+    defaultValues: {
+      name: userProfile.name,
+      email: userProfile.email,
+      phone: userProfile.phone,
+      availability_status: userProfile.availability_status,
+      job_title: userProfile.job_title,
+      experience_years: userProfile.experience_years,
+    },
   });
   const {
-    data,
     error: APIerror,
     isPending,
     isSuccess,
     mutate,
+    isError,
   } = useEditProfile();
 
   function onSubmit(data: EditProfileFormData) {
     console.log(data);
-    // mutate({
-    //   fullName: data.fullName,
-    //   email: data.email,
-    //   phoneNumber: data.phoneNumber,
-    //   jobTitle: data.jobTitle,
-    //   YOE: data.YOE,
-    //   currentTaP: data.currentTaP,
-    // });
+    mutate({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      job_title: data.job_title,
+      experience_years: Number(data.experience_years),
+      availability_status: data.availability_status,
+      about: `${data.job_title} with ${data.experience_years} of experience`,
+    });
   }
-
   return (
     <>
       <Navbar />
@@ -60,8 +61,25 @@ export default function EditProfilePage() {
         <div className="mx-auto w-[90%] px-2.5 grid gap-y-15  py-14.5">
           <div className="flex items-center  gap-2.5 mb-10 ">
             <ProfileImage Icon={SquarePen} image="/public/dummyImage.jpg" />
-            <h1 className="text-black text-2xl">name</h1>
+            <h1 className="text-black text-2xl">{userProfile.name}</h1>
           </div>
+          {/* <div>
+            {isSuccess && (
+              <Notify
+                message="Profile info updated successfully."
+                variant="success"
+              />
+            )}
+            {isError && (
+              <Notify
+                message={
+                  APIerror?.message ||
+                  "An error occurred while updating profile info."
+                }
+                variant="error"
+              />
+            )}
+          </div> */}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 ">
             {/*personal info section */}
             <SectionsWrapper>
@@ -75,7 +93,8 @@ export default function EditProfilePage() {
                   placeholder="Full Name"
                   Icon={UserRound}
                   type="text"
-                  {...register("fullName")}
+                  {...register("name")}
+                  errorMSG={errors.name?.message}
                 />
                 <EditProfileInput
                   title="Email Address"
@@ -83,20 +102,35 @@ export default function EditProfilePage() {
                   Icon={Mail}
                   type="text"
                   {...register("email")}
+                  errorMSG={errors.email?.message}
                 />
                 <EditProfileInput
                   title="Phone Number"
                   placeholder="Phone Number"
                   Icon={Phone}
                   type="text"
-                  {...register("phoneNumber")}
+                  {...register("phone")}
+                  errorMSG={errors.phone?.message}
                 />
-                <EditProfileInput
-                  title="Availability Status"
-                  placeholder="Availability Status"
-                  Icon={GlobeCheck}
-                  type="text"
-                />
+                <div>
+                  <label
+                    className="text-lg text-black"
+                    htmlFor="availabilityStats"
+                  >
+                    Availability Stats
+                  </label>
+                  <div className="rounded-3xl border border-ring  px-3 py-2 flex w-full space-y-2">
+                    <select
+                      id="availabilityStats"
+                      className="w-full outline-none"
+                      {...register("availability_status")}
+                    >
+                      <option value="">Select an option</option>
+                      <option value="available">available</option>
+                      <option value="unavailable">unavailable</option>
+                    </select>
+                  </div>
+                </div>
               </InputsWrapper>
             </SectionsWrapper>
             {/*experience section */}
@@ -110,21 +144,19 @@ export default function EditProfilePage() {
                   title="Job Title"
                   placeholder="Job Title"
                   type="text"
-                  {...register("jobTitle")}
+                  {...register("job_title")}
                 />
                 <EditProfileInput
                   title="Years of Experience"
                   placeholder="Years of Experience"
                   type="text"
-                  {...register("YOE")}
+                  {...register("experience_years")}
                 />
                 <div className="col-span-3">
                   <EditProfileInput
                     title="Current Team / Project"
                     placeholder="Current Team / Project"
-                    Icon={UserRound}
                     type="text"
-                    {...register("currentTaP")}
                   />
                 </div>
               </InputsWrapper>
@@ -132,7 +164,10 @@ export default function EditProfilePage() {
             <div className="w-full py-4 border-t-2 border-border mt-4">
               <Button
                 type="submit"
-                className="w-full bg-blue-600 text-white hover:bg-blue-700 flex items-center rounded-2xl"
+                className={`w-full bg-blue-600 text-white hover:bg-blue-700 flex items-center rounded-2xl ${
+                  isPending ? "cursor-not-allowed opacity-50" : ""
+                }`}
+                disabled={isPending}
               >
                 Save <Check />
               </Button>

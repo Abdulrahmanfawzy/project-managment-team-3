@@ -4,7 +4,7 @@ import axios from "axios";
 
 export async function editProfile(data: EditProfileFormData) {
   try {
-    const res = await api.post("/profile", data);
+    const res = await api.put("/profile", data);
     return res.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

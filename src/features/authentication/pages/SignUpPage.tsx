@@ -19,7 +19,9 @@ export default function SignUpPage() {
   });
   const { mutate, isPending, error: APIerror, isSuccess, data } = useSignUp();
 
+  console.log(errors);
   function onSubmit(data: SignUpFormData) {
+    console.log(data);
     mutate({
       name: data.name,
       email: data.email,
@@ -65,7 +67,6 @@ export default function SignUpPage() {
         />
         <FormInput
           placeholder="Your Email"
-          type="email"
           title="Email"
           Icon={Mail}
           {...register("email")}
@@ -100,7 +101,7 @@ export default function SignUpPage() {
         <Button
           type="submit"
           className={`cursor-pointer bg-brand py-1  ${
-            isPending ? "cursor-not-allowed" : ""
+            isPending ? "cursor-not-allowed opacity-50" : ""
           }`}
           disabled={isPending}
         >
