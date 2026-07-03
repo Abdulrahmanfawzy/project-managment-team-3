@@ -1,5 +1,5 @@
-import RecentActivities from "../components/RecentActivities";
-import { useGetProfile } from "../hooks/useGetProfile";
+import RecentActivities from "../../Features/profile/components/RecentActivities";
+import { useGetProfile } from "../../Features/profile/hooks/useGetProfile";
 
 export default function Overview() {
   const { data: userProfile } = useGetProfile();

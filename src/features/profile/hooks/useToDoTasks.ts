@@ -6,4 +6,5 @@ export const useToDoTasks = () =>
     queryKey: ["todo-tasks"],
     queryFn: getToDoTasks,
     staleTime: 1000 * 60 * 5, // 5 minutes
+    gcTime: 1000 * 60 * 10,
   });

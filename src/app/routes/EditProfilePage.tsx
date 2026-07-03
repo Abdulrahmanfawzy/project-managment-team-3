@@ -1,20 +1,20 @@
 import { Check, Mail, Phone, SquarePen, UserRound } from "lucide-react";
-import EditProfileInput from "../components/EditProfileInput";
-import FormTitle from "../components/FormTitle";
+import EditProfileInput from "../../Features/profile/components/EditProfileInput";
+import FormTitle from "../../Features/profile/components/FormTitle";
 import Navbar from "@/components/shared/NavBarTemp";
-import SectionsWrapper from "../components/SectionsWrapper";
-import InputsWrapper from "../components/InputsWrapper";
-import ProfileImage from "../components/ProfileImage";
+import SectionsWrapper from "../../Features/profile/components/SectionsWrapper";
+import InputsWrapper from "../../Features/profile/components/InputsWrapper";
+import ProfileImage from "../../Features/profile/components/ProfileImage";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import {
   editProfileSchema,
   type EditProfileFormData,
-} from "../schemas/editProfile";
+} from "../../Features/profile/schemas/editProfile";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEditProfile } from "../hooks/useEditProfile";
-import { useGetProfile } from "../hooks/useGetProfile";
-import Notify from "../components/Notify";
+import { useEditProfile } from "../../Features/profile/hooks/useEditProfile";
+import { useGetProfile } from "../../Features/profile/hooks/useGetProfile";
+import Notify from "../../Features/profile/components/Notify";
 
 export default function EditProfilePage() {
   //TODO change profile photo after clicking the profile photo settings button

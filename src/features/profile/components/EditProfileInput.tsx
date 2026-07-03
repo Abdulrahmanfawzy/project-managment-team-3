@@ -29,10 +29,6 @@ export default function EditProfileInput({
   );
   return (
     <div className="space-y-2">
-      {/* {errorMSG && (
-        <p className="text-red-500 w-full text-center mb-2">{errorMSG}</p>
-      )} */}
-
       <label className="text-lg text-black" htmlFor={title}>
         {title}
       </label>
@@ -59,6 +55,9 @@ export default function EditProfileInput({
           />
         </div>
       </div>
+      {errorMSG && (
+        <p className="text-red-500 text-sm w-full mb-2">{errorMSG}</p>
+      )}
     </div>
   );
 }

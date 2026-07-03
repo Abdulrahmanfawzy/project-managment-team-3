@@ -6,4 +6,5 @@ export const useDoneTasks = () =>
     queryKey: ["done-tasks"],
     queryFn: getDoneTasks,
     staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
   });

@@ -1,14 +1,14 @@
-import { useResetPassword } from "../hooks/useResetPassword";
+import { useResetPassword } from "../../Features/authentication/hooks/useResetPassword";
 import { useForm } from "react-hook-form";
 import {
   resetPasswordSchema,
   type ResetPasswordFormData,
-} from "../schemas/resetPasswordSchema";
+} from "../../Features/authentication/schemas/resetPasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FormInput from "../components/FormInput";
+import FormInput from "../../Features/authentication/components/FormInput";
 import { Button } from "@/components/ui/button";
 import { LockKeyhole, Mail } from "lucide-react";
-import Header from "../components/Header";
+import Header from "../../Features/authentication/components/Header";
 
 export default function ResetPasswordPage() {
   const { mutate, isSuccess, error: APIerror, isPending } = useResetPassword();

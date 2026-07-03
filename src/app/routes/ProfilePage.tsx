@@ -1,11 +1,11 @@
 import { Briefcase, CalendarDays, Clock4, Settings } from "lucide-react";
-import Navbar from "../../../components/shared/NavBarTemp";
-import StatCard from "../components/StatCard";
-import TabNavigation from "../components/TabNavigation";
+import Navbar from "../../components/shared/NavBarTemp";
+import StatCard from "../../Features/profile/components/StatCard";
+import TabNavigation from "../../Features/profile/components/TabNavigation";
 
 import { Link, Outlet } from "react-router-dom";
-import { useGetProfile } from "../hooks/useGetProfile";
-import { useDoneTasks } from "../hooks/useDoneTasks";
+import { useGetProfile } from "../../Features/profile/hooks/useGetProfile";
+import { useDoneTasks } from "../../Features/profile/hooks/useDoneTasks";
 
 export default function ProfilePage() {
   //TODO navigate to edit profile settings when clicking in the image profile settings button

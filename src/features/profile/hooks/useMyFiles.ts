@@ -6,6 +6,6 @@ export const useMyFiles = () =>
   useSuspenseQuery({
     queryKey: ["files", "profile"],
     queryFn: getMyFiles,
-    refetchOnWindowFocus: true,
-    retry: false,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
   });

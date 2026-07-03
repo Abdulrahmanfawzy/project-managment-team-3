@@ -3,9 +3,12 @@ import FormInput from "@/features/authentication/components/FormInput";
 import { Button } from "@/components/ui/button";
 import { LockKeyhole, Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { signInSchema, type SignInFormData } from "../schemas/signInSchema";
+import {
+  signInSchema,
+  type SignInFormData,
+} from "../../Features/authentication/schemas/signInSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSignIn } from "../hooks/useSignIn";
+import { useSignIn } from "../../Features/authentication/hooks/useSignIn";
 import { Link, useLocation } from "react-router-dom";
 
 export default function SignInPage() {

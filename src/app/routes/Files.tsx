@@ -1,5 +1,5 @@
-import FileCard from "../components/FileCard";
-import { useMyFiles } from "../hooks/useMyFiles";
+import FileCard from "../../Features/profile/components/FileCard";
+import { useMyFiles } from "../../Features/profile/hooks/useMyFiles";
 // const files = [
 //   {
 //     title: "Design mockups",

@@ -1,13 +1,13 @@
 import { Mail } from "lucide-react";
-import FormInput from "../components/FormInput";
-import Header from "../components/Header";
+import FormInput from "../../Features/authentication/components/FormInput";
+import Header from "../../Features/authentication/components/Header";
 import { Button } from "@/components/ui/button";
-import { useForgetPassword } from "../hooks/useForgetPassword";
+import { useForgetPassword } from "../../Features/authentication/hooks/useForgetPassword";
 import { useForm } from "react-hook-form";
 import {
   forgetPasswordSchema,
   type ForgetPasswordFormData,
-} from "../schemas/forgetPasswordSchema";
+} from "../../Features/authentication/schemas/forgetPasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
 

@@ -1,6 +1,6 @@
-import TaskCard from "../components/TaskCard";
-import { useDoneTasks } from "../hooks/useDoneTasks";
-import { useToDoTasks } from "../hooks/useToDoTasks";
+import TaskCard from "../../Features/profile/components/TaskCard";
+import { useDoneTasks } from "../../Features/profile/hooks/useDoneTasks";
+import { useToDoTasks } from "../../Features/profile/hooks/useToDoTasks";
 
 // const todoTasks = [
 //   { name: "Create user interview", progress: 10 },

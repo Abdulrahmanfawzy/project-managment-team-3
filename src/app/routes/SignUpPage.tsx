@@ -3,9 +3,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { LockKeyhole, Mail, UserRound } from "lucide-react";
-import FormInput from "../components/FormInput";
-import { signUpSchema, type SignUpFormData } from "../schemas/signUpSchema";
-import { useSignUp } from "../hooks/useSignUp";
+import FormInput from "../../Features/authentication/components/FormInput";
+import {
+  signUpSchema,
+  type SignUpFormData,
+} from "../../Features/authentication/schemas/signUpSchema";
+import { useSignUp } from "../../Features/authentication/hooks/useSignUp";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
@@ -19,7 +22,6 @@ export default function SignUpPage() {
   });
   const { mutate, isPending, error: APIerror, isSuccess, data } = useSignUp();
 
-  console.log(errors);
   function onSubmit(data: SignUpFormData) {
     console.log(data);
     mutate({
@@ -28,10 +30,10 @@ export default function SignUpPage() {
       password: data.password,
       password_confirmation: data.password_confirmation,
     });
-    navigate("/signin", {
-      replace: true,
-      state: { message: "Account created successfully. please sign in" },
-    });
+    // navigate("/signin", {
+    //   replace: true,
+    //   state: { message: "Account created successfully. please sign in" },
+    // });
   }
   //TODO: redirect to verify email after successful registration
 

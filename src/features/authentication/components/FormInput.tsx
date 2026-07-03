@@ -30,7 +30,7 @@ export default function FormInput({
   return (
     <div>
       {errorMSG && (
-        <p className="text-red-500 w-full text-center mb-2">{errorMSG}</p>
+        <p className="text-red-500 w-full text-sm mb-2">{errorMSG}</p>
       )}
 
       <div className={classVariants({ class: errorMSG ? "error" : "noError" })}>

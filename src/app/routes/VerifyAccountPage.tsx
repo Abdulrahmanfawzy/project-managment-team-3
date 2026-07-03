@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "../components/Header";
-import FormInput from "../components/FormInput";
-import { useVerifyAccount } from "../hooks/useVerifyAccount";
+import Header from "../../Features/authentication/components/Header";
+import FormInput from "../../Features/authentication/components/FormInput";
+import { useVerifyAccount } from "../../Features/authentication/hooks/useVerifyAccount";
 import { useForm } from "react-hook-form";
 import {
   verifyAccountSchema,
   type VerifyAccountFormData,
-} from "../schemas/verifyAccount";
+} from "../../Features/authentication/schemas/verifyAccount";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { KeyRound } from "lucide-react";
